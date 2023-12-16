@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Grade</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $("document").ready(function () {
+                $("#output").text("No Request has been made yet");
+            });
+            function ajaxCall(value) {
+                let method;
+                switch (value) {
+                    case "GET":
+                        method = "GET";
+                        break;
+                    case "DELETE":
+                        method = "DELETE";
+                        break;
+                    case "POST":
+                        method = "POST";
+                        break;
+                    case "PUT":
+                        method = "PUT";
+                        break;
+                }
+
+                $.ajax({
+                    method: method,
+                    url:"grade",
+                    success: function (data) {
+                        $("#output").text(method + " request received");
+                    }
+                });
+            }
+        </script>
+
+    </head>
+    <body>
+        <h1 id="output"> </h1>
+        <input type="button" value="GET" onclick="ajaxCall('GET')" >
+        <input type="button" value="POST" onclick="ajaxCall('POST')" >
+        <input type="button" value="DELETE" onclick="ajaxCall('DELETE')">
+        <input type="button" value="PUT" onclick="ajaxCall('PUT')">
+    </body>
+</html>
